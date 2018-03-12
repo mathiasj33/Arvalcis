@@ -7,10 +7,11 @@ public class PlayerShootingControl : MonoBehaviour
     public GameObject line;
     public GameObject shot;
 
-    public bool Aiming { get; private set; }
-
     private PlayerAnimationControl animControl;
     private Invoker invoker;
+
+    public bool Aiming { get; private set; }
+    private bool canShoot = true;
 
     void Start()
     {
@@ -25,6 +26,8 @@ public class PlayerShootingControl : MonoBehaviour
             Aiming = true;
             animControl.StartAiming();
             invoker.Invoke(.25f, SetLineActiveIfAiming);
+            canShoot = false;
+            invoker.Invoke(.25f, () => canShoot = true);
         }
         else if (Input.GetKeyUp(KeyCode.Mouse1) && Aiming)
         {
@@ -32,8 +35,10 @@ public class PlayerShootingControl : MonoBehaviour
             animControl.StopAiming();
             line.SetActive(false);
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0) && Aiming)
+        else if (Input.GetKeyDown(KeyCode.Mouse0) && canShoot && Aiming)
         {
+            canShoot = false;
+            invoker.Invoke(.6f, () => canShoot = true);
             Shoot();
         }
     }
