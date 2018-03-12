@@ -54,7 +54,14 @@ public class PlayerShootingControl : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(shot.transform.position, shot.transform.forward);
         bool hitSuccess = Physics.Raycast(ray, out hit, 9);
+
         SetUpShotVisuals(newShot, hitSuccess, hitSuccess ? hit.point : Vector3.zero);
+
+        if(hitSuccess) {
+            GameObject go = hit.collider.gameObject;
+            if(!go.tag.Equals("Enemy")) return;
+            go.GetComponent<EnemyAnimationControl>().PlayDeathAnim(shot.transform.forward);
+        }
 
         newShot.SetActive(true);
         newShot.AddComponent<FadeLineOutControl>();
@@ -78,7 +85,8 @@ public class PlayerShootingControl : MonoBehaviour
         }
     }
 
-    private void SetLineActiveIfAiming() {
-        if(Aiming) line.SetActive(true);
+    private void SetLineActiveIfAiming()
+    {
+        if (Aiming) line.SetActive(true);
     }
 }

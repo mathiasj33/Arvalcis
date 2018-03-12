@@ -1,79 +1,52 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class EnemyAnimationControl : MonoBehaviour {
-
+public class EnemyAnimationControl : MonoBehaviour
+{
     public GameObject chest;
-    public GameObject tipPosition;
+	public GameObject blood;
 
-    private Animator animator;
     private CharacterController characterController;
-    private Camera cam;
-    private ParticleSystem blood;
-    private GameObject player;
-    private Invoker invoker;
+    private Animator animator;
 
-    private bool turnToPlayer;
+	private Invoker invoker;
 
-    void Start () {
-        animator = GetComponent<Animator>();
+    void Start()
+    {
         characterController = GetComponent<CharacterController>();
-        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        blood = GameObject.Find("Blood").GetComponent<ParticleSystem>();
-        player = GameObject.Find("Player");
-        invoker = GameObject.Find("Main").GetComponent<Invoker>();
+        animator = GetComponent<Animator>();
+		invoker = GameObject.Find("Main").GetComponent<Invoker>();
     }
 
     void Update()
     {
-        if(turnToPlayer)
-        {
-            Vector3 playerSameLevel = player.transform.position;
-            playerSameLevel.y = transform.position.y;
-            Vector3 dir = playerSameLevel - transform.position;
-            dir.Normalize();
-            Quaternion goalRot = Quaternion.LookRotation(dir, Vector3.up);
-            transform.rotation = Quaternion.Lerp(transform.rotation, goalRot, Time.deltaTime * 4);
-        }
+
     }
 
-    public void Walk()
-    {
-        animator.SetBool("Walking", true);
-    }
-
-    public void Shoot()
-    {
-        turnToPlayer = true;
-        animator.SetTrigger("Shoot");
-        invoker.Invoke(.3f, CreateLaser);
-    }
-
-    public void PlayDeathAnim()
+    public void PlayDeathAnim(Vector3 dir)
     {
         Destroy(characterController);
+        Destroy(GetComponent<BoxCollider>()); //this collider is only used to provide a better hitbox
         animator.enabled = false;
-        blood.transform.position = GameObject.Find("BloodPos").transform.position;
-        blood.transform.rotation = GameObject.Find("BloodPos").transform.rotation;
-        blood.Play();
+        // blood.transform.position = GameObject.Find("BloodPos").transform.position;
+        // blood.transform.rotation = GameObject.Find("BloodPos").transform.rotation;
+        // blood.Play();
         foreach (Rigidbody r in GetComponentsInChildren<Rigidbody>())
         {
             r.isKinematic = false;
         }
-        chest.GetComponent<Rigidbody>().AddForce(cam.transform.forward * 100, ForceMode.Impulse);
-        Destroy(this);
+        chest.GetComponent<Rigidbody>().AddForce(dir * 100, ForceMode.Impulse);
+		invoker.Invoke(1f, ShowBlood);
+        //Destroy(this);
     }
 
-    private void CreateLaser()
+    private void ShowBlood()
     {
-        GameObject empty = new GameObject();
-        empty.AddComponent<LineRenderer>();
-        LineRenderer laser = empty.GetComponent<LineRenderer>();
-
-        laser.sharedMaterial = (Material)Resources.Load("Models/laser");
-        laser.SetColors(new Color(255, 0, 0, 1), new Color(255, 0, 0, 1));
-        laser.SetWidth(0.1f, 0.1f);
-        laser.SetPosition(0, tipPosition.transform.position);
-        laser.SetPosition(1, player.transform.position);
+		blood.transform.parent = null;
+		blood.transform.position = new Vector3(blood.transform.position.x, .05f, blood.transform.position.z);
+        blood.transform.rotation = Quaternion.Euler(0, 0, 0);
+        blood.AddComponent<ScaleBloodControl>();
+        blood.SetActive(true);
     }
 }
