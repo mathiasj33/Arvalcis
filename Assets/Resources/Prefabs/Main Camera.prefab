@@ -9,38 +9,19 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1078309600222610}
+  m_RootGameObject: {fileID: 1446304884259178}
   m_IsPrefabParent: 1
---- !u!1 &1078309600222610
+--- !u!1 &1278122830813430
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4914515902433464}
-  - component: {fileID: 20140753867854880}
-  - component: {fileID: 124759034902240744}
-  - component: {fileID: 81235341064204442}
-  - component: {fileID: 114821936769208094}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1118370538179290
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4064494276275292}
-  - component: {fileID: 20020917176220436}
-  - component: {fileID: 124126082996922786}
-  - component: {fileID: 81064778243716368}
+  - component: {fileID: 4405988990341072}
+  - component: {fileID: 20280742850637128}
+  - component: {fileID: 124415551280507930}
+  - component: {fileID: 81760706558413466}
   m_Layer: 0
   m_Name: UICamera
   m_TagString: Untagged
@@ -48,39 +29,59 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4064494276275292
+--- !u!1 &1446304884259178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4410152906928460}
+  - component: {fileID: 20460623752515436}
+  - component: {fileID: 124873175542002382}
+  - component: {fileID: 81312656236063462}
+  - component: {fileID: 114557537665144894}
+  - component: {fileID: 114433801582159416}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4405988990341072
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1118370538179290}
+  m_GameObject: {fileID: 1278122830813430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4914515902433464}
+  m_Father: {fileID: 4410152906928460}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4914515902433464
+--- !u!4 &4410152906928460
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078309600222610}
+  m_GameObject: {fileID: 1446304884259178}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.7725015, y: 10.96, z: -4.5622773}
+  m_LocalPosition: {x: 1.32, y: 11.5, z: -4.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4064494276275292}
+  - {fileID: 4405988990341072}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 47.655003, y: 0, z: 0}
---- !u!20 &20020917176220436
+--- !u!20 &20280742850637128
 Camera:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1118370538179290}
+  m_GameObject: {fileID: 1278122830813430}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 3
@@ -111,12 +112,12 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!20 &20140753867854880
+--- !u!20 &20460623752515436
 Camera:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078309600222610}
+  m_GameObject: {fileID: 1446304884259178}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -147,46 +148,56 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &81064778243716368
+--- !u!81 &81312656236063462
 AudioListener:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1118370538179290}
-  m_Enabled: 0
---- !u!81 &81235341064204442
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078309600222610}
+  m_GameObject: {fileID: 1446304884259178}
   m_Enabled: 1
---- !u!114 &114821936769208094
+--- !u!81 &81760706558413466
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1278122830813430}
+  m_Enabled: 0
+--- !u!114 &114433801582159416
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078309600222610}
+  m_GameObject: {fileID: 1446304884259178}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fea7f18abc3a40b89ab95c9a10c1d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 10.96
+  height: 11.5
   angle: 90
-  player: {fileID: 0}
   zDistance: 0
---- !u!124 &124126082996922786
+--- !u!114 &114557537665144894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1446304884259178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3f4c1cc62fa4f4f8648a5f03f67bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!124 &124415551280507930
 Behaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1118370538179290}
+  m_GameObject: {fileID: 1278122830813430}
   m_Enabled: 0
---- !u!124 &124759034902240744
+--- !u!124 &124873175542002382
 Behaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078309600222610}
+  m_GameObject: {fileID: 1446304884259178}
   m_Enabled: 1

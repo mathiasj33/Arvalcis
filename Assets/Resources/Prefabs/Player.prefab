@@ -539,7 +539,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1265774927974400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7725015, y: -0.5019564, z: -4.5622773}
+  m_LocalPosition: {x: 1.32, y: 0, z: -4.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4983333093700612}
@@ -1010,7 +1010,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.94482756, g: 1, b: 0, a: 1}
   m_Intensity: 1
-  m_Range: 15
+  m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  rotateSpeed: 3
+  rotateSpeed: 5
 --- !u!114 &114950143436534474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1383,4 +1383,4 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.12, z: 0}
+  m_Center: {x: 0, y: 1.15, z: 0}
