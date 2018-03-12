@@ -24,7 +24,7 @@ public class PlayerShootingControl : MonoBehaviour
         {
             Aiming = true;
             animControl.StartAiming();
-            invoker.Invoke(.25f, () => line.SetActive(true));
+            invoker.Invoke(.25f, SetLineActiveIfAiming);
         }
         else if (Input.GetKeyUp(KeyCode.Mouse1) && Aiming)
         {
@@ -42,7 +42,7 @@ public class PlayerShootingControl : MonoBehaviour
     {
         animControl.Shoot();
         line.SetActive(false);
-        invoker.Invoke(.6f, () => line.SetActive(true));
+        invoker.Invoke(.6f, SetLineActiveIfAiming);
 
         GameObject newShot = Instantiate(shot, shot.transform.parent);
         newShot.transform.parent = null;
@@ -71,5 +71,9 @@ public class PlayerShootingControl : MonoBehaviour
             Color c = lineRenderer.endColor;
             lineRenderer.endColor = new Color(c.r, c.g, c.b, 0);
         }
+    }
+
+    private void SetLineActiveIfAiming() {
+        if(Aiming) line.SetActive(true);
     }
 }
