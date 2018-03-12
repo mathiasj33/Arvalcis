@@ -14,6 +14,7 @@ public class PlayerMovementControl : MonoBehaviour
     private CharacterController characterController;
 
     private bool walking;
+    private float yMovement;
 
     void Start()
     {
@@ -74,8 +75,22 @@ public class PlayerMovementControl : MonoBehaviour
             }
             movement.Normalize();
             movement *= speed * Time.deltaTime;
-            movement.y = -9.81f * Time.deltaTime / 20; ;
-            characterController.Move(movement);
+        }
+        movement.y = yMovement;
+        characterController.Move(movement);
+
+        UpdateYMovement();
+    }
+
+    private void UpdateYMovement()
+    {
+        if (characterController.isGrounded)
+        {
+            yMovement = -9.81f * Time.deltaTime / 20;
+        }
+        else
+        {
+            yMovement -= 9.81f * Time.deltaTime / 20;
         }
     }
 
