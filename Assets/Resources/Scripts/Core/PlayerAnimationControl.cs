@@ -6,6 +6,7 @@ public class PlayerAnimationControl : MonoBehaviour
 {
 
     private Animator animator;
+    private float time = 0;
 
     void Start()
     {
@@ -14,7 +15,12 @@ public class PlayerAnimationControl : MonoBehaviour
 
     void Update()
     {
-
+        time += Time.deltaTime;
+        if (time > .5f)
+        {
+            time = 0;
+            //Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"));
+        }
     }
 
     public void StartWalking()
