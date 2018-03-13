@@ -5,46 +5,51 @@ using UnityEngine;
 public class PlayerAnimationControl : MonoBehaviour
 {
 
-    private Animator animator;
-    private float time = 0;
+    public GameObject blade;
+
+    private Animator playerAnimator;
+    private Animator bladeAnimator;
+
+    private Invoker invoker;
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>();
+        bladeAnimator = blade.GetComponent<Animator>();
+        invoker = GameObject.Find("Main").GetComponent<Invoker>();
     }
 
     void Update()
     {
-        time += Time.deltaTime;
-        if (time > .5f)
-        {
-            time = 0;
-            //Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"));
-        }
     }
 
     public void StartWalking()
     {
-        animator.SetBool("Walking", true);
+        playerAnimator.SetBool("Walking", true);
     }
 
     public void StopWalking()
     {
-        animator.SetBool("Walking", false);
+        playerAnimator.SetBool("Walking", false);
     }
 
     public void StartAiming()
     {
-        animator.SetBool("Aiming", true);
+        playerAnimator.SetBool("Aiming", true);
     }
 
     public void StopAiming()
     {
-        animator.SetBool("Aiming", false);
+        playerAnimator.SetBool("Aiming", false);
     }
 
     public void Shoot()
     {
-        animator.SetTrigger("Shoot");
+        playerAnimator.SetTrigger("Shoot");
+    }
+
+    public void Punch() {
+        playerAnimator.SetTrigger("Punch");
+        invoker.Invoke(.1f, () => bladeAnimator.SetTrigger("Slide"));
     }
 }
