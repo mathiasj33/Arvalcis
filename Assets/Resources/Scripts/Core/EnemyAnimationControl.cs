@@ -29,13 +29,15 @@ public class EnemyAnimationControl : MonoBehaviour
         ActivateRagdoll();
         chest.GetComponent<Rigidbody>().AddForce(dir * 100, ForceMode.Impulse);
         invoker.Invoke(1f, ShowBlood);
+        GameObject copy = gameObject; //This is necessary because the script gets destroyed before the invoker executes
+        invoker.Invoke(1f, () => copy.AddComponent<TurnEyesOffControl>());
         Destroy(this);
     }
 
     private void ActivateRagdoll()
     {
         Destroy(characterController);
-        Destroy(GetComponent<BoxCollider>()); //this collider is only used to provide a better hitbox
+        Destroy(GetComponent<BoxCollider>()); //This collider is only used to provide a better hitbox
         animator.enabled = false;
         foreach (Rigidbody r in GetComponentsInChildren<Rigidbody>())
         {
