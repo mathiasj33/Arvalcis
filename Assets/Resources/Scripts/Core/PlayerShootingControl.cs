@@ -72,7 +72,7 @@ public class PlayerShootingControl : MonoBehaviour
         var lineRenderer = shot.GetComponent<LineRenderer>();
         if (hitSuccess)
         {
-            shot.transform.Find("EnemyLight").position = hitPoint;
+            shot.transform.Find("EnemyLight").position = hitPoint + (hitPoint - shot.transform.position).normalized;
             float dist = (hitPoint - shot.transform.position).magnitude;
             lineRenderer.SetPosition(1, new Vector3(0, 0, dist * 9));
         }
