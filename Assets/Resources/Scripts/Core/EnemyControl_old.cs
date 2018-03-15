@@ -1,4 +1,4 @@
-﻿// using UnityEngine;
+// using UnityEngine;
 // using System.Collections.Generic;
 // using System.Collections;
 
@@ -32,7 +32,7 @@
 //             StartCoroutine("SetWalkAnim");
 //         }
 //     }
-	
+
 //     private IEnumerator SetWalkAnim()
 //     {
 //         yield return new WaitForSeconds(.5f);

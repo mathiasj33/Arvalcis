@@ -1,5 +1,5 @@
-﻿using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class EnemyAnimationControlOld : MonoBehaviour {
 
@@ -15,7 +15,7 @@ public class EnemyAnimationControlOld : MonoBehaviour {
 
     private bool turnToPlayer;
 
-    void Start () {
+    void Start() {
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -24,10 +24,8 @@ public class EnemyAnimationControlOld : MonoBehaviour {
         invoker = GameObject.Find("Main").GetComponent<Invoker>();
     }
 
-    void Update()
-    {
-        if(turnToPlayer)
-        {
+    void Update() {
+        if (turnToPlayer) {
             Vector3 playerSameLevel = player.transform.position;
             playerSameLevel.y = transform.position.y;
             Vector3 dir = playerSameLevel - transform.position;
@@ -37,40 +35,35 @@ public class EnemyAnimationControlOld : MonoBehaviour {
         }
     }
 
-    public void Walk()
-    {
+    public void Walk() {
         animator.SetBool("Walking", true);
     }
 
-    public void Shoot()
-    {
+    public void Shoot() {
         turnToPlayer = true;
         animator.SetTrigger("Shoot");
         invoker.Invoke(.3f, CreateLaser);
     }
 
-    public void PlayDeathAnim()
-    {
+    public void PlayDeathAnim() {
         Destroy(characterController);
         animator.enabled = false;
         blood.transform.position = GameObject.Find("BloodPos").transform.position;
         blood.transform.rotation = GameObject.Find("BloodPos").transform.rotation;
         blood.Play();
-        foreach (Rigidbody r in GetComponentsInChildren<Rigidbody>())
-        {
+        foreach (Rigidbody r in GetComponentsInChildren<Rigidbody>()) {
             r.isKinematic = false;
         }
         chest.GetComponent<Rigidbody>().AddForce(cam.transform.forward * 100, ForceMode.Impulse);
         Destroy(this);
     }
 
-    private void CreateLaser()
-    {
+    private void CreateLaser() {
         GameObject empty = new GameObject();
         empty.AddComponent<LineRenderer>();
         LineRenderer laser = empty.GetComponent<LineRenderer>();
 
-        laser.sharedMaterial = (Material)Resources.Load("Models/laser");
+        laser.sharedMaterial = (Material) Resources.Load("Models/laser");
         laser.SetColors(new Color(255, 0, 0, 1), new Color(255, 0, 0, 1));
         laser.SetWidth(0.1f, 0.1f);
         laser.SetPosition(0, tipPosition.transform.position);

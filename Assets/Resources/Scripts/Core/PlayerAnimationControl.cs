@@ -1,9 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimationControl : MonoBehaviour
-{
+public class PlayerAnimationControl : MonoBehaviour {
 
     public GameObject blade;
 
@@ -12,39 +11,31 @@ public class PlayerAnimationControl : MonoBehaviour
 
     private Invoker invoker;
 
-    void Start()
-    {
+    void Start() {
         playerAnimator = GetComponent<Animator>();
         bladeAnimator = blade.GetComponent<Animator>();
         invoker = GameObject.Find("Main").GetComponent<Invoker>();
     }
 
-    void Update()
-    {
-    }
+    void Update() { }
 
-    public void StartWalking()
-    {
+    public void StartWalking() {
         playerAnimator.SetBool("Walking", true);
     }
 
-    public void StopWalking()
-    {
+    public void StopWalking() {
         playerAnimator.SetBool("Walking", false);
     }
 
-    public void StartAiming()
-    {
+    public void StartAiming() {
         playerAnimator.SetBool("Aiming", true);
     }
 
-    public void StopAiming()
-    {
+    public void StopAiming() {
         playerAnimator.SetBool("Aiming", false);
     }
 
-    public void Shoot()
-    {
+    public void Shoot() {
         playerAnimator.SetTrigger("Shoot");
     }
 

@@ -1,9 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShootingControl : MonoBehaviour
-{
+public class PlayerShootingControl : MonoBehaviour {
     public GameObject line;
     public GameObject shot;
 
@@ -13,38 +12,30 @@ public class PlayerShootingControl : MonoBehaviour
     public bool Aiming { get; private set; }
     private bool canShoot = true;
 
-    void Start()
-    {
+    void Start() {
         invoker = GameObject.Find("Main").GetComponent<Invoker>();
         animControl = GetComponent<PlayerAnimationControl>();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !Aiming)
-        {
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !Aiming) {
             Aiming = true;
             animControl.StartAiming();
             invoker.Invoke(.25f, SetLineActiveIfAiming);
             canShoot = false;
             invoker.Invoke(.25f, () => canShoot = true);
-        }
-        else if (Input.GetKeyUp(KeyCode.Mouse1) && Aiming)
-        {
+        } else if (Input.GetKeyUp(KeyCode.Mouse1) && Aiming) {
             Aiming = false;
             animControl.StopAiming();
             line.SetActive(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.Mouse0) && canShoot && Aiming)
-        {
+        } else if (Input.GetKeyDown(KeyCode.Mouse0) && canShoot && Aiming) {
             canShoot = false;
             invoker.Invoke(.6f, () => canShoot = true);
             Shoot();
         }
     }
 
-    private void Shoot()
-    {
+    private void Shoot() {
         animControl.Shoot();
         line.SetActive(false);
         invoker.Invoke(.6f, SetLineActiveIfAiming);
@@ -57,9 +48,9 @@ public class PlayerShootingControl : MonoBehaviour
 
         SetUpShotVisuals(newShot, hitSuccess, hitSuccess ? hit.point : Vector3.zero);
 
-        if(hitSuccess) {
+        if (hitSuccess) {
             GameObject go = hit.collider.gameObject;
-            if(!go.tag.Equals("Enemy")) return;
+            if (!go.tag.Equals("Enemy")) return;
             go.GetComponent<EnemyAnimationControl>().PlayDeathAnim(shot.transform.forward);
         }
 
@@ -67,17 +58,13 @@ public class PlayerShootingControl : MonoBehaviour
         newShot.AddComponent<FadeLineOutControl>();
     }
 
-    private void SetUpShotVisuals(GameObject shot, bool hitSuccess, Vector3 hitPoint)
-    {
+    private void SetUpShotVisuals(GameObject shot, bool hitSuccess, Vector3 hitPoint) {
         var lineRenderer = shot.GetComponent<LineRenderer>();
-        if (hitSuccess)
-        {
+        if (hitSuccess) {
             shot.transform.Find("EnemyLight").position = hitPoint + (hitPoint - shot.transform.position).normalized;
             float dist = (hitPoint - shot.transform.position).magnitude;
             lineRenderer.SetPosition(1, new Vector3(0, 0, dist * 9));
-        }
-        else
-        {
+        } else {
             shot.transform.Find("EnemyLight").gameObject.SetActive(false);
             lineRenderer.SetPosition(1, new Vector3(0, 0, 80));
             Color c = lineRenderer.endColor;
@@ -85,8 +72,7 @@ public class PlayerShootingControl : MonoBehaviour
         }
     }
 
-    private void SetLineActiveIfAiming()
-    {
+    private void SetLineActiveIfAiming() {
         if (Aiming) line.SetActive(true);
     }
 }

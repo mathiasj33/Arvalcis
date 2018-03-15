@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementControl : MonoBehaviour
-{
+public class PlayerMovementControl : MonoBehaviour {
 
     public float speed = 1;
     public float rotateSpeed = 1;
@@ -16,30 +15,24 @@ public class PlayerMovementControl : MonoBehaviour
     private bool walking;
     private float yMovement;
 
-    void Start()
-    {
+    void Start() {
         animControl = GetComponent<PlayerAnimationControl>();
         shootingControl = GetComponent<PlayerShootingControl>();
         characterController = GetComponent<CharacterController>();
     }
 
-    void Update()
-    {
+    void Update() {
         Rotate();
         Move();
     }
 
-    private void Rotate()
-    {
-        if (shootingControl.Aiming)
-        {
+    private void Rotate() {
+        if (shootingControl.Aiming) {
             Vector3 hit = GetMouseRayHit();
             Vector3 lookDir = (hit - transform.position).normalized;
             lookDir.y = 0;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(lookDir), Time.deltaTime * rotateSpeed * 5);
-        }
-        else
-        {
+        } else {
             Vector3 movement = GetVectorFromInput();
             Vector3 lookDir = GetVectorFromInput();
             if (movement == Vector3.zero) return;
@@ -47,29 +40,22 @@ public class PlayerMovementControl : MonoBehaviour
         }
     }
 
-    private Vector3 GetMouseRayHit()
-    {
+    private Vector3 GetMouseRayHit() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (!Physics.Raycast(ray, out hit)) throw new InvalidOperationException("There is no object under the user's mouse");
         return hit.point;
     }
 
-    private void Move()
-    {
+    private void Move() {
         Vector3 movement = GetVectorFromInput();
-        if (movement == Vector3.zero)
-        {
-            if (walking)
-            {
+        if (movement == Vector3.zero) {
+            if (walking) {
                 walking = false;
                 animControl.StopWalking();
             }
-        }
-        else
-        {
-            if (!walking)
-            {
+        } else {
+            if (!walking) {
                 walking = true;
                 animControl.StartWalking();
             }
@@ -82,20 +68,15 @@ public class PlayerMovementControl : MonoBehaviour
         UpdateYMovement();
     }
 
-    private void UpdateYMovement()
-    {
-        if (characterController.isGrounded)
-        {
+    private void UpdateYMovement() {
+        if (characterController.isGrounded) {
             yMovement = -9.81f * Time.deltaTime / 20;
-        }
-        else
-        {
+        } else {
             yMovement -= 9.81f * Time.deltaTime / 20;
         }
     }
 
-    private Vector3 GetVectorFromInput()
-    {
+    private Vector3 GetVectorFromInput() {
         Vector3 vec = Vector3.zero;
         if (Input.GetKey(KeyCode.W)) vec += Vector3.forward;
         if (Input.GetKey(KeyCode.A)) vec += Vector3.left;

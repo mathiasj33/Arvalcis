@@ -1,9 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimationControl : MonoBehaviour
-{
+public class EnemyAnimationControl : MonoBehaviour {
     public GameObject chest;
     public GameObject blood;
 
@@ -12,20 +11,17 @@ public class EnemyAnimationControl : MonoBehaviour
 
     private Invoker invoker;
 
-    void Start()
-    {
+    void Start() {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         invoker = GameObject.Find("Main").GetComponent<Invoker>();
     }
 
-    void Update()
-    {
+    void Update() {
 
     }
 
-    public void PlayDeathAnim(Vector3 dir)
-    {
+    public void PlayDeathAnim(Vector3 dir) {
         ActivateRagdoll();
         chest.GetComponent<Rigidbody>().AddForce(dir * 100, ForceMode.Impulse);
         invoker.Invoke(1f, ShowBlood);
@@ -34,19 +30,16 @@ public class EnemyAnimationControl : MonoBehaviour
         Destroy(this);
     }
 
-    private void ActivateRagdoll()
-    {
+    private void ActivateRagdoll() {
         Destroy(characterController);
         Destroy(GetComponent<BoxCollider>()); //This collider is only used to provide a better hitbox
         animator.enabled = false;
-        foreach (Rigidbody r in GetComponentsInChildren<Rigidbody>())
-        {
+        foreach (Rigidbody r in GetComponentsInChildren<Rigidbody>()) {
             r.isKinematic = false;
         }
     }
 
-    private void ShowBlood()
-    {
+    private void ShowBlood() {
         blood.transform.parent = null;
         blood.transform.position = new Vector3(blood.transform.position.x, .05f, blood.transform.position.z);
         blood.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
@@ -55,8 +48,7 @@ public class EnemyAnimationControl : MonoBehaviour
         blood.SetActive(true);
     }
 
-    private Texture LoadRandomBloodTexture()
-    {
+    private Texture LoadRandomBloodTexture() {
         int texID = Random.Range(1, 3);
         return Resources.Load<Texture>("Textures/BloodSplats/Splat" + texID);
     }

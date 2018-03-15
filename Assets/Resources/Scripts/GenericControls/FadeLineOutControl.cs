@@ -1,22 +1,19 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FadeLineOutControl : MonoBehaviour
-{
+public class FadeLineOutControl : MonoBehaviour {
 
-    void Start()
-    {
+    void Start() {
         StartCoroutine(FadeOut());
     }
 
-	private IEnumerator FadeOut() {
-		LineRenderer laser = GetComponent<LineRenderer>();
+    private IEnumerator FadeOut() {
+        LineRenderer laser = GetComponent<LineRenderer>();
         Light[] lights = GetComponentsInChildren<Light>();
         float time = 0;
         float alpha = 1;
-        while (alpha > 0)
-        {
+        while (alpha > 0) {
             time += Time.deltaTime;
             alpha = 1 - time * 2;
             laser.startColor = new Color(laser.startColor.r, laser.startColor.g, laser.startColor.b, alpha);
@@ -27,5 +24,5 @@ public class FadeLineOutControl : MonoBehaviour
             yield return null;
         }
         Destroy(gameObject);
-	}
+    }
 }

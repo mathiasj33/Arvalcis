@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class TakedownControl : MonoBehaviour {
 
-	private PlayerAnimationControl animControl;
-	private Invoker invoker;
+    private PlayerAnimationControl animControl;
+    private Invoker invoker;
 
-	void Start () {
-		animControl = GetComponent<PlayerAnimationControl>();
-		invoker = GameObject.Find("Main").GetComponent<Invoker>();
-	}
-	
-	void Update () {
-		if(Input.GetKeyDown(KeyCode.Q)) {
-			animControl.Punch();
-			invoker.Invoke(.25f, () => {
-				GameObject.Find("Alien").GetComponent<EnemyAnimationControl>().PlayDeathAnim(Vector3.forward/20);
-			});
-		}
-	}
+    void Start() {
+        animControl = GetComponent<PlayerAnimationControl>();
+        invoker = GameObject.Find("Main").GetComponent<Invoker>();
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            animControl.Punch();
+            invoker.Invoke(.25f, () => {
+                Ray ray = new Ray(transform.position + new Vector3(0, 1.5f, 0), transform.forward);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 1f) && hit.transform.gameObject.tag.Equals("Enemy")) {
+                    var enemyAnimControl = hit.transform.gameObject.GetComponent<EnemyAnimationControl>();
+                    Vector3 dir = hit.transform.position - transform.position;
+                    enemyAnimControl.PlayDeathAnim(dir.normalized / 50);
+                }
+            });
+        }
+    }
 }
