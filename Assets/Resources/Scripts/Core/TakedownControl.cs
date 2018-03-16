@@ -7,13 +7,17 @@ public class TakedownControl : MonoBehaviour {
     private PlayerAnimationControl animControl;
     private Invoker invoker;
 
+    private bool canTakedown = true;
+
     void Start() {
         animControl = GetComponent<PlayerAnimationControl>();
         invoker = GameObject.Find("Main").GetComponent<Invoker>();
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && canTakedown) {
+            canTakedown = false;
+            invoker.Invoke(.8f, () => canTakedown = true);
             animControl.Takeout();
             invoker.Invoke(.25f, () => {
                 Ray ray = new Ray(transform.position + new Vector3(0, 1.5f, 0), transform.forward);

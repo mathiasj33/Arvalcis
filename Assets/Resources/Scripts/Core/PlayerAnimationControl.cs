@@ -41,6 +41,7 @@ public class PlayerAnimationControl : MonoBehaviour {
 
     public void Takeout() {
         playerAnimator.SetTrigger("Takeout");
+        playerAnimator.Play("Nothing", 2); //reset the blade animation as it might still be running
         invoker.Invoke(.1f, () => bladeAnimator.SetTrigger("Slide"));
     }
 }
