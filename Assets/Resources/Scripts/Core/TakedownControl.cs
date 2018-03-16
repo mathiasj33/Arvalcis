@@ -13,7 +13,7 @@ public class TakedownControl : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Q)) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             animControl.Takeout();
             invoker.Invoke(.25f, () => {
                 Ray ray = new Ray(transform.position + new Vector3(0, 1.5f, 0), transform.forward);
