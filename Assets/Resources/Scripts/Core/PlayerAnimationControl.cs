@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,8 +39,8 @@ public class PlayerAnimationControl : MonoBehaviour {
         playerAnimator.SetTrigger("Shoot");
     }
 
-    public void Punch() {
-        playerAnimator.SetTrigger("Punch");
+    public void Takeout() {
+        playerAnimator.SetTrigger("Takeout");
         invoker.Invoke(.1f, () => bladeAnimator.SetTrigger("Slide"));
     }
 }

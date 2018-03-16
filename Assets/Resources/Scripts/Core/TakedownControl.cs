@@ -14,7 +14,7 @@ public class TakedownControl : MonoBehaviour {
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {
-            animControl.Punch();
+            animControl.Takeout();
             invoker.Invoke(.25f, () => {
                 Ray ray = new Ray(transform.position + new Vector3(0, 1.5f, 0), transform.forward);
                 RaycastHit hit;

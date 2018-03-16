@@ -67,6 +67,7 @@ ModelImporter:
     7400010: StrafeRight
     7400012: StrafeBack
     7400014: Punch
+    7400016: Takeout
     9500000: //RootNode
     13700000: Cylinder
   externalObjects: {}
@@ -214,10 +215,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Punch
-      takeName: Punch
+      name: Takeout
+      takeName: Takeout
       firstFrame: 0
-      lastFrame: 22
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

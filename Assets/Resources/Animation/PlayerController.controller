@@ -26,7 +26,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Punch
+  - m_Name: Takeout
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -58,7 +58,7 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: PunchLayer
+    m_Name: TakeoutLayer
     m_StateMachine: {fileID: 1107932346282174826}
     m_Mask: {fileID: 101100000, guid: 8adf805ca12d04476923fcacaa57fcd2, type: 2}
     m_Motions: []
@@ -77,7 +77,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Punch
+    m_ConditionEvent: Takeout
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102213149998406008}
@@ -314,7 +314,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Punch
+  m_Name: Takeout
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -328,7 +328,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400014, guid: 7b7b0312f229a4ac9986185ee466e0dc, type: 3}
+  m_Motion: {fileID: 7400016, guid: 7b7b0312f229a4ac9986185ee466e0dc, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -496,7 +496,7 @@ AnimatorStateMachine:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PunchLayer
+  m_Name: TakeoutLayer
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102003307640011900}
