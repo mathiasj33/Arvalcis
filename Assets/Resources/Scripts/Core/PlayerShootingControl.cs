@@ -51,7 +51,7 @@ public class PlayerShootingControl : MonoBehaviour {
         if (hitSuccess) {
             GameObject go = hit.collider.gameObject;
             if (!go.tag.Equals("Enemy")) return;
-            go.GetComponent<EnemyAnimationControl>().PlayDeathAnim(shot.transform.forward);
+            go.GetComponent<EnemyAnimationControl>().PlayDeathAnim(hit.point, shot.transform.forward);
         }
 
         newShot.SetActive(true);

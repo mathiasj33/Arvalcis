@@ -21,10 +21,11 @@ public class EnemyAnimationControl : MonoBehaviour {
 
     }
 
-    public void PlayDeathAnim(Vector3 dir) {
+    public void PlayDeathAnim(Vector3 hitPos, Vector3 dir) {
         ActivateRagdoll();
         chest.GetComponent<Rigidbody>().AddForce(dir * 100, ForceMode.Impulse);
-        invoker.Invoke(1f, ShowBlood);
+        PlayBloodParticle(hitPos, dir);
+        invoker.Invoke(1f, ShowBloodPool);
         GameObject copy = gameObject; //This is necessary because the script gets destroyed before the invoker executes
         invoker.Invoke(1f, () => copy.AddComponent<TurnEyesOffControl>());
         Destroy(this);
@@ -39,7 +40,14 @@ public class EnemyAnimationControl : MonoBehaviour {
         }
     }
 
-    private void ShowBlood() {
+    private void PlayBloodParticle(Vector3 pos, Vector3 dir) {
+        GameObject blood = transform.Find("BloodParticle").gameObject;
+        blood.transform.position = pos;
+        blood.transform.rotation = Quaternion.LookRotation(-dir);
+        blood.GetComponent<ParticleSystem>().Play();
+    }
+
+    private void ShowBloodPool() {
         blood.transform.parent = null;
         blood.transform.position = new Vector3(blood.transform.position.x, .05f, blood.transform.position.z);
         blood.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);

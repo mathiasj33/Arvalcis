@@ -21,7 +21,7 @@ public class TakedownControl : MonoBehaviour {
                 if (Physics.Raycast(ray, out hit, 1f) && hit.transform.gameObject.tag.Equals("Enemy")) {
                     var enemyAnimControl = hit.transform.gameObject.GetComponent<EnemyAnimationControl>();
                     Vector3 dir = hit.transform.position - transform.position;
-                    enemyAnimControl.PlayDeathAnim(dir.normalized / 50);
+                    enemyAnimControl.PlayDeathAnim(hit.point, dir.normalized / 50);
                 }
             });
         }
