@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class PlayerAnimationControl : MonoBehaviour {
 
-    public GameObject blade;
-
     private Animator playerAnimator;
-    private Animator bladeAnimator;
 
     private Invoker invoker;
 
     void Start() {
         playerAnimator = GetComponent<Animator>();
-        bladeAnimator = blade.GetComponent<Animator>();
         invoker = GameObject.Find("Main").GetComponent<Invoker>();
     }
 
@@ -37,11 +33,5 @@ public class PlayerAnimationControl : MonoBehaviour {
 
     public void Shoot() {
         playerAnimator.SetTrigger("Shoot");
-    }
-
-    public void Takeout() {
-        playerAnimator.SetTrigger("Takeout");
-        playerAnimator.Play("Nothing", 2); //reset the blade animation as it might still be running
-        invoker.Invoke(.1f, () => bladeAnimator.SetTrigger("Slide"));
     }
 }
