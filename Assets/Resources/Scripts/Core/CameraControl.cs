@@ -7,10 +7,9 @@ public class CameraControl : MonoBehaviour {
     public float angle;
     public float zDistance;
 
-    private Transform player;
+    public Transform player;
 
     void Start() {
-        player = GameObject.Find("Player").transform;
         transform.position = new Vector3(player.position.x, height, player.position.z);
         transform.eulerAngles = new Vector3(angle, transform.eulerAngles.y, transform.eulerAngles.z);
     }

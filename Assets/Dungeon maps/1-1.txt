@@ -1,0 +1,2 @@
+Wall width: .8
+Floor width: 6
