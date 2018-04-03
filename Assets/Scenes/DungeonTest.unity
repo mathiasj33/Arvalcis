@@ -1267,6 +1267,7 @@ GameObject:
   - component: {fileID: 1064588561}
   - component: {fileID: 1064588563}
   - component: {fileID: 1064588562}
+  - component: {fileID: 1064588564}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1329,6 +1330,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1064588560}
+  m_Mesh: {fileID: 4300004, guid: c62b6b3520f2346578911fb52a542da8, type: 3}
+--- !u!64 &1064588564
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1064588560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300004, guid: c62b6b3520f2346578911fb52a542da8, type: 3}
 --- !u!1 &1138503389
 GameObject:
@@ -1575,10 +1590,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1328649321}
   - component: {fileID: 1328649320}
-  - component: {fileID: 1328649319}
   - component: {fileID: 1328649318}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1618,20 +1632,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &1328649319
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1328649317}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1328649320
 MeshFilter:
   m_ObjectHideFlags: 0
